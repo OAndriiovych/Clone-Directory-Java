@@ -58,7 +58,7 @@ public class Main {
         System.out.println(s);
         wayFrom = new File(scanner.next());
         while (!wayFrom.exists()){
-            System.out.println("нема папки");
+            System.out.println("didn't find directory");
             wayFrom = new File(scanner.next());
         }
         File[] files = wayFrom.listFiles();
@@ -83,8 +83,10 @@ public class Main {
                     }
                     break;
                 }
+
             }
-            if(flag)i++;
+
+            if(flag){i++;a++;}
         }
     }
 
