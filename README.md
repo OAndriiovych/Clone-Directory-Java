@@ -1,1 +1,1 @@
-"# Portfolio_java1" 
+This program are for cloning from first directory to second directory without many cycles writing/delete.
