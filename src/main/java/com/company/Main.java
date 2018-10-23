@@ -12,15 +12,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        initFiles("з якої папки?",list);
-        initFiles("до якої папки?",list2);
+        initFiles("From which directory?",list);
+        initFiles("To which directory?",list2);
 
-        // проходимся по списках
-        //якщо в першый 10 непопадаэться одинаковий файл пролистуэм далі
-        //зроблено для зменшення часу пошуку по великому спику
-        if(21<list2.size()){
-            cleanList(10);
-            //повна перевірка уже малого списка
+        // go through the list
+        //if in first 10 we didn't find the same file, we will skip it
+        //I do it for the minimum time
+        if(25<list2.size()){
+            cleanList(20);
+            //full cleaning list
             cleanList(list2.size());
         }
         else cleanList(list2.size());
