@@ -85,8 +85,11 @@ public class Main {
                 }
 
             }
+            if(flag){
+                i++;
+                if (++a>=list2.size())a=list2.size();
+            }
 
-            if(flag){i++;a++;}
         }
     }
 
