@@ -34,19 +34,30 @@ public class Main {
             System.out.println(list2.get(i)+" DELETE");
             list2.get(i).delete();
         }
-
-        for (int i=0;i<list.size();i++){
-            try {
-                System.out.println(list.get(i)+" COPY");
-                copyFileUsingStream(list.get(i), new File(wayFrom+"\\"+list.get(i).getName()));
-            }
-            catch (IOException e){
-                System.out.println(e);
-            }
-        }
+        startCopyByThreads(0);
+        startCopyByThreads(1);
+        startCopyByThreads(2);
         System.out.println("end");
     }
+    private static void startCopyByThreads(final int st){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i=st;i<list.size();i+=3){
+                    try {
+                        System.out.println(list.get(i)+" COPY");
+                        copyFileUsingStream(list.get(i), new File(wayFrom+"\\"+list.get(i).getName()));
+                    }
+                    catch (IOException e){
+                        System.out.println(e);
+                    }
+                }
+            }
 
+        });
+        thread.start();
+
+    }
     private static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
         OutputStream os = null;
