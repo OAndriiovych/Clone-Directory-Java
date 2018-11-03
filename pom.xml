@@ -17,7 +17,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                main.java.com.company.Main
+                                com.company.Main
                             </mainClass>
                         </manifest>
                     </archive>

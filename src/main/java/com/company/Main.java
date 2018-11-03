@@ -18,16 +18,26 @@ public class Main {
         // go through the list
         //if in first 10 we didn't find the same file, we will skip it
         //I do it for the minimum time
-        if(25<list2.size()){
+        if(50<list2.size()){
             cleanList(20);
             //full cleaning list
             cleanList(list2.size());
         }
         else cleanList(list2.size());
 
-        for (int i=0;i<list2.size();i++){list2.get(i).delete();}
+        System.out.println(list2.size()+" file(s) will be deleting");
+        System.out.println(list.size()+" file(s) will be copy");
+        System.out.println("true/false?");
+        if (!scanner.nextBoolean())return;
+
+        for (int i=0;i<list2.size();i++){
+            System.out.println(list2.get(i)+" DELETE");
+            list2.get(i).delete();
+        }
+
         for (int i=0;i<list.size();i++){
             try {
+                System.out.println(list.get(i)+" COPY");
                 copyFileUsingStream(list.get(i), new File(wayFrom+"\\"+list.get(i).getName()));
             }
             catch (IOException e){
@@ -70,24 +80,25 @@ public class Main {
     }
     private static void cleanList(int a){
         boolean flag;
-        String name;
+        StringBuilder name;
         for (int i = 0; i<list.size();) {
             flag=true;
-            name = list.get(i).getName();
+            name = new StringBuilder(list.get(i).getName());
             for(int ii=0;ii<a;ii++){
-                if(name.equals(list2.get(ii).getName())){
-                    if(list.get(i).length()==list2.get(ii).length()){
-                        list.remove(list.get(i));
-                        list2.remove(list2.get(ii));
+                if(name.toString().equals(list.get(ii).getName())){
+                    if(list.get(i).length()<=list2.get(ii).length()){
+                        System.out.println(list.get(i).getName()+" Find");
+                        list.remove(i);
+                        list2.remove(ii);
                         flag=false;
                     }
                     break;
                 }
-
             }
             if(flag){
                 i++;
-                if (++a>=list2.size())a=list2.size();
+                a++;
+                if (a>=list2.size())a=list2.size();
             }
 
         }
