@@ -68,7 +68,7 @@ public class Main {
         System.out.println(s);
         wayFrom = new File(scanner.next());
         while (!wayFrom.exists()){
-            System.out.println("didn't find directory");
+            System.out.println("didn't find directory \n try again");
             wayFrom = new File(scanner.next());
         }
         File[] files = wayFrom.listFiles();
@@ -85,11 +85,15 @@ public class Main {
             flag=true;
             name = new StringBuilder(list.get(i).getName());
             for(int ii=0;ii<a;ii++){
-                if(name.toString().equals(list.get(ii).getName())){
+                if(name.toString().equals(list2.get(ii).getName())){
                     if(list.get(i).length()<=list2.get(ii).length()){
-                        System.out.println(list.get(i).getName()+" Find");
+                        System.out.println(list.get(i).getName()+" Found");
                         list.remove(i);
                         list2.remove(ii);
+                        if (a>=list2.size()){
+                            a=list2.size();
+                        }
+                        else a++;
                         flag=false;
                     }
                     break;
@@ -97,8 +101,6 @@ public class Main {
             }
             if(flag){
                 i++;
-                a++;
-                if (a>=list2.size())a=list2.size();
             }
 
         }
