@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
 
+
 public class Main {
 
     private static LinkedList<File> list=new LinkedList<File>(),list2=new LinkedList<File>();
@@ -35,48 +36,13 @@ public class Main {
             System.out.println(list2.get(i)+" DELETE");
             list2.get(i).delete();
         }
+
         int numOfThreads = Runtime.getRuntime().availableProcessors();
         ForkJoinPool pool=new ForkJoinPool(numOfThreads);
-        pool.invoke(new CopyByThread(numOfThreads,list,wayFrom));
-        
-        startCopyByThreads(0);
-        startCopyByThreads(1);
-        startCopyByThreads(2);
-        System.out.println("end");
-    }
-    private static void startCopyByThreads(final int st){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i=st;i<list.size();i+=3){
-                    try {
-                        System.out.println(list.get(i)+" COPY");
-                        copyFileUsingStream(list.get(i), new File(wayFrom+"\\"+list.get(i).getName()));
-                    }
-                    catch (IOException e){
-                        System.out.println(e);
-                    }
-                }
-            }
+        System.out.println( pool.invoke(new CopyByThread(numOfThreads,list,wayFrom)));
 
-        });
-        thread.start();
-    }
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        InputStream is = null;
-        OutputStream os = null;
-        try {
-            is = new FileInputStream(source);
-            os = new FileOutputStream(dest);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        } finally {
-            is.close();
-            os.close();
-        }
+
+
     }
 
     private  static void initFiles(String s,LinkedList <File>lst){

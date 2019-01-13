@@ -3,36 +3,40 @@ package com.company;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.locks.Lock;
+
 
 public class CopyByThread extends RecursiveTask <Integer> {
 
-    //int numOfThreads = Runtime.getRuntime().availableProcessors();
-    private LinkedList<File> list=new LinkedList<File>();
-    private int numOfThreads,
-            from=0,
-            to=list.size();
-    private File wayFrom;
+    private static LinkedList<File> list=new LinkedList<>();
+    private static File wayFrom;
+    private static int numOfThreads,toAtAll;
+    public int from=0;
+    public int to;
 
     public CopyByThread(int numOfThreads, LinkedList<File> list, File wayFrom) {
         this.numOfThreads = numOfThreads;
         this.list = list;
         this.wayFrom = wayFrom;
+        to=toAtAll=list.size();
     }
 
     public CopyByThread(int from, int to) {
         this.from = from;
         this.to = to;
     }
-
     @Override
     protected Integer compute() {
-        if((to-from)<=from/numOfThreads){
+        if((to-from)<=toAtAll/numOfThreads){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    if(to<toAtAll) {
+                        to += 1;
+                    }
                     for (int i=from;i<to;i++){
+                        System.out.println(Thread.currentThread().getName()+list.get(i)+" COPY");
                         try {
-                            System.out.println(list.get(i)+" COPY");
                             copyFileUsingStream(list.get(i), new File(wayFrom+"\\"+list.get(i).getName()));
                         }
                         catch (IOException e){
@@ -42,12 +46,13 @@ public class CopyByThread extends RecursiveTask <Integer> {
                 }
             }).start();
             return 0;
-        }else {
-            int middle =(to+from)/2;
-            CopyByThread firstHalf = new CopyByThread(from,middle);
+        }
+        else {
+            long middle =  (to+from)/2;
+            CopyByThread firstHalf = new CopyByThread(from,(int) middle);
             firstHalf.fork();
-            CopyByThread secondHalf = new CopyByThread(middle+1,to);
-            int secondValue= secondHalf.compute();
+            CopyByThread secondHalf = new CopyByThread((int)middle+1,to);
+            int secondValue = secondHalf.compute();
             return firstHalf.join()+secondValue;
         }
     }
