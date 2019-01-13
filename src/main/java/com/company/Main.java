@@ -3,6 +3,7 @@ package com.company;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.concurrent.ForkJoinPool;
 
 public class Main {
 
@@ -34,6 +35,10 @@ public class Main {
             System.out.println(list2.get(i)+" DELETE");
             list2.get(i).delete();
         }
+        int numOfThreads = Runtime.getRuntime().availableProcessors();
+        ForkJoinPool pool=new ForkJoinPool(numOfThreads);
+        pool.invoke(new CopyByThread(numOfThreads,list,wayFrom));
+        
         startCopyByThreads(0);
         startCopyByThreads(1);
         startCopyByThreads(2);
@@ -56,7 +61,6 @@ public class Main {
 
         });
         thread.start();
-
     }
     private static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
@@ -87,8 +91,8 @@ public class Main {
         for (int i=0;i<files.length;i++){
             lst.add(files[i]);
         }
-
     }
+
     private static void cleanList(int a){
         boolean flag;
         StringBuilder name;
@@ -113,8 +117,6 @@ public class Main {
             if(flag){
                 i++;
             }
-
         }
     }
-
 }
