@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.concurrent.RecursiveTask;
 import java.util.concurrent.locks.Lock;
@@ -8,17 +9,20 @@ import java.util.concurrent.locks.Lock;
 
 public class CopyByThread extends RecursiveTask <Integer> {
 
-    private static LinkedList<File> list=new LinkedList<>();
+    private static LinkedList<File> list;
+    private static ArrayList<String> arrayList;
     private static File wayFrom;
     private static int numOfThreads,toAtAll;
     public int from=0;
     public int to;
 
-    public CopyByThread(int numOfThreads, LinkedList<File> list, File wayFrom) {
+
+    public CopyByThread(int numOfThreads, LinkedList<File> list, File wayFrom, ArrayList<String> arrayList) {
         this.numOfThreads = numOfThreads;
         this.list = list;
         this.wayFrom = wayFrom;
         to=toAtAll=list.size();
+        this.arrayList=arrayList;
     }
 
     public CopyByThread(int from, int to) {
@@ -31,6 +35,9 @@ public class CopyByThread extends RecursiveTask <Integer> {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    synchronized (arrayList) {
+                        arrayList.add(Thread.currentThread().getName());
+                    }
                     if(to<toAtAll) {
                         to += 1;
                     }
@@ -43,9 +50,13 @@ public class CopyByThread extends RecursiveTask <Integer> {
                             System.out.println(e);
                         }
                     }
+                    synchronized (arrayList) {
+                        arrayList.remove(Thread.currentThread().getName());
+                    }
                 }
+
             }).start();
-            return 0;
+            return null;
         }
         else {
             long middle =  (to+from)/2;

@@ -1,9 +1,11 @@
 package com.company;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 
 
 public class Main {
@@ -37,12 +39,20 @@ public class Main {
             list2.get(i).delete();
         }
 
+
         int numOfThreads = Runtime.getRuntime().availableProcessors();
         ForkJoinPool pool=new ForkJoinPool(numOfThreads);
-        System.out.println( pool.invoke(new CopyByThread(numOfThreads,list,wayFrom)));
+        ArrayList<String> arrayList= new ArrayList();
 
-
-
+        pool.invoke(new CopyByThread(numOfThreads, list, wayFrom,arrayList));
+        while (!arrayList.isEmpty()){
+            try {
+                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+       }
+        System.out.println("end");
     }
 
     private  static void initFiles(String s,LinkedList <File>lst){
@@ -58,7 +68,6 @@ public class Main {
             lst.add(files[i]);
         }
     }
-
     private static void cleanList(int a){
         boolean flag;
         StringBuilder name;
