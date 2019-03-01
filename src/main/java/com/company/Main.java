@@ -1,21 +1,24 @@
 package com.company;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
 
 public class Main {
 
-    private static LinkedList<File> list=new LinkedList<File>(),list2=new LinkedList<File>();
+    private static int  numOfThreads = Runtime.getRuntime().availableProcessors();
+    private List<File> list=new LinkedList(),list2=new LinkedList();
     private static Scanner scanner =new Scanner(System.in);
-    private static File wayFrom;
+    private File wayFrom;
 
     public static void main(String[] args) {
-
+        Main main = new Main();
+        main.cloneDirectory();
+        System.out.println("end");
+    }
+    private void cloneDirectory(){
         initFiles("From which directory?",list);
         initFiles("To which directory?",list2);
 
@@ -39,8 +42,6 @@ public class Main {
             list2.get(i).delete();
         }
 
-
-        int numOfThreads = Runtime.getRuntime().availableProcessors();
         ForkJoinPool pool=new ForkJoinPool(numOfThreads);
         ArrayList<String> arrayList= new ArrayList();
 
@@ -51,24 +52,20 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-       }
-        System.out.println("end");
+        }
     }
 
-    private  static void initFiles(String s,LinkedList <File>lst){
+    private void initFiles(String s,List <File>lst){
         System.out.println(s);
         wayFrom = new File(scanner.next());
         while (!wayFrom.exists()){
             System.out.println("didn't find directory \n try again");
             wayFrom = new File(scanner.next());
         }
-        File[] files = wayFrom.listFiles();
-
-        for (int i=0;i<files.length;i++){
-            lst.add(files[i]);
-        }
+        Collections.addAll(lst,wayFrom.listFiles());
     }
-    private static void cleanList(int a){
+
+    private void cleanList(int a){
         boolean flag;
         StringBuilder name;
         for (int i = 0; i<list.size();) {

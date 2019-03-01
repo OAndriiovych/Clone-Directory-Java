@@ -8,12 +8,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5ad6f73c-4980-44bd-a41e-b43ab64d405f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/music_jar/music.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/music_jar/music.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/CopyByThread$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/CopyByThread$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/CopyByThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/CopyByThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/company/Main.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -35,33 +31,33 @@
     <session id="-484698185">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="18" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.1" value="3" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="3" />
           <entry key="project.open.time.14" value="2" />
-          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.17" value="3" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="iml" value="1" />
-          <entry key="java" value="5247" />
+          <entry key="java" value="5440" />
           <entry key="xml" value="32" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="5247" />
+          <entry key="JAVA" value="5440" />
           <entry key="XML" value="32" />
         </counts>
       </usages-collector>
@@ -88,11 +84,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+            <state relative-caret-position="170">
+              <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,16 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#909#1870#0" expanded="true" />
-                <element signature="e#1869#1870#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-187">
+              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -144,8 +135,8 @@
         <option value="$PROJECT_DIR$/src/com/company/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/company/Decor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/company/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/company/Main.java" />
       </list>
     </option>
   </component>
@@ -192,7 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -231,13 +221,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547550005651" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551438312302" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -363,12 +354,14 @@
       <workItem from="1547036327484" duration="1285000" />
       <workItem from="1547372210917" duration="18075000" />
       <workItem from="1547545654910" duration="41000" />
-      <workItem from="1547547729801" duration="2545000" />
+      <workItem from="1547547729801" duration="4119000" />
+      <workItem from="1548395941465" duration="36000" />
+      <workItem from="1551436018441" duration="2292000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68387000" />
+    <option name="totallyTimeSpent" value="72289000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -383,7 +376,7 @@
     <frame x="71" y="-7" width="1472" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932885" visible="true" weight="0.17776205" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932885" visible="true" weight="0.18342777" />
       <window_info id="Structure" order="1" sideWeight="0.502" side_tool="true" weight="0.17280453" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -392,7 +385,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.50067115" side_tool="true" weight="0.17280453" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32885906" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32885906" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -410,7 +403,7 @@
       <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" sideWeight="0.49932885" visible="true" weight="0.16288953" />
+      <window_info anchor="right" id="Maven Projects" order="8" sideWeight="0.49932885" weight="0.16288953" />
       <window_info anchor="right" id="Coverage" order="9" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.16288953" />
     </layout>
   </component>
@@ -481,16 +474,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Decor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Decor.java" />
     <entry file="jar://C:/Program Files/Java/jdk-11/lib/src.zip!/java.base/java/util/concurrent/ForkJoinPool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8308">
@@ -498,24 +482,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-187">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/CopyByThread.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="58" column="23" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+        <state relative-caret-position="170">
+          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#909#1870#0" expanded="true" />
-            <element signature="e#1869#1870#0" expanded="true" />
           </folding>
         </state>
       </provider>

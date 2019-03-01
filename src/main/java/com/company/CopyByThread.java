@@ -2,14 +2,13 @@ package com.company;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.concurrent.RecursiveTask;
-import java.util.concurrent.locks.Lock;
 
+import java.util.List;
+import java.util.concurrent.RecursiveTask;
 
 public class CopyByThread extends RecursiveTask <Integer> {
 
-    private static LinkedList<File> list;
+    private static List<File> list;
     private static ArrayList<String> arrayList;
     private static File wayFrom;
     private static int numOfThreads,toAtAll;
@@ -17,7 +16,7 @@ public class CopyByThread extends RecursiveTask <Integer> {
     public int to;
 
 
-    public CopyByThread(int numOfThreads, LinkedList<File> list, File wayFrom, ArrayList<String> arrayList) {
+    public CopyByThread(int numOfThreads, List<File> list, File wayFrom, ArrayList<String> arrayList) {
         this.numOfThreads = numOfThreads;
         this.list = list;
         this.wayFrom = wayFrom;
