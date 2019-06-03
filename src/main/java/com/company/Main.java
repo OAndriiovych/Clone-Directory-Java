@@ -2,15 +2,14 @@ package com.company;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-
+import java.util.concurrent.*;
 
 public class Main {
 
-    private static int  numOfThreads = Runtime.getRuntime().availableProcessors();
-    private List<File> list=new LinkedList(),list2=new LinkedList();
-    private static Scanner scanner =new Scanner(System.in);
+    private static int numOfThreads = Runtime.getRuntime().availableProcessors();
+    private List<File> from = new LinkedList();
+    private List<File> to = new LinkedList();
+    private static Scanner scanner = new Scanner(System.in);
     private File wayFrom;
 
     public static void main(String[] args) {
@@ -18,76 +17,86 @@ public class Main {
         main.cloneDirectory();
         System.out.println("end");
     }
-    private void cloneDirectory(){
-        initFiles("From which directory?",list);
-        initFiles("To which directory?",list2);
 
-        // go through the list
+    private void cloneDirectory() {
+        initFiles("From which directory?", from);
+        initFiles("To which directory?", to);
+        // go through the from
         //if in first 10 we didn't find the same file, we will skip it
         //I do it for the minimum time
-        if(50<list2.size()){
+        if (50 < to.size()) {
             cleanList(20);
-            //full cleaning list
-            cleanList(list2.size());
-        }
-        else cleanList(list2.size());
+            //full cleaning from
+            cleanList(to.size());
+        } else cleanList(to.size());
 
-        System.out.println(list2.size()+" file(s) will be deleting");
-        System.out.println(list.size()+" file(s) will be copy");
+        System.out.println(to.size() + " file(s) will be deleting");
+        System.out.println(from.size() + " file(s) will be copy");
         System.out.println("true/false?");
-        if (!scanner.nextBoolean())return;
+        if (!scanner.nextBoolean()) return;
 
-        for (int i=0;i<list2.size();i++){
-            System.out.println(list2.get(i)+" DELETE");
-            list2.get(i).delete();
+        for (File file : to) {
+            System.out.println(file + " DELETE");
+            file.delete();
         }
 
-        ForkJoinPool pool=new ForkJoinPool(numOfThreads);
-        ArrayList<String> arrayList= new ArrayList();
-
-        pool.invoke(new CopyByThread(numOfThreads, list, wayFrom,arrayList));
-        while (!arrayList.isEmpty()){
-            try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(1));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        ExecutorService threadPool = Executors.newFixedThreadPool(8);
+        List<Future<Integer>> futures = new ArrayList<>();
+        for (File saveFile : from) {
+            futures.add(
+                    CompletableFuture.supplyAsync(() -> {
+                                try {
+                                    copyFileUsingStream(saveFile, new File(wayFrom + "\\" + saveFile.getName()));
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                return 1;
+                            }, threadPool
+                    ));
         }
+        threadPool.shutdown();
     }
 
-    private void initFiles(String s,List <File>lst){
+    private void initFiles(String s, List<File> lst) {
         System.out.println(s);
         wayFrom = new File(scanner.next());
-        while (!wayFrom.exists()){
+        while (!wayFrom.exists()) {
             System.out.println("didn't find directory \n try again");
             wayFrom = new File(scanner.next());
         }
-        Collections.addAll(lst,wayFrom.listFiles());
+        Collections.addAll(lst, Objects.requireNonNull(wayFrom.listFiles()));
     }
 
-    private void cleanList(int a){
-        boolean flag;
-        StringBuilder name;
-        for (int i = 0; i<list.size();) {
-            flag=true;
-            name = new StringBuilder(list.get(i).getName());
-            for(int ii=0;ii<a;ii++){
-                if(name.toString().equals(list2.get(ii).getName())){
-                    if(list.get(i).length()<=list2.get(ii).length()){
-                        System.out.println(list.get(i).getName()+" Found");
-                        list.remove(i);
-                        list2.remove(ii);
-                        if (a>=list2.size()){
-                            a=list2.size();
-                        }
-                        else a++;
-                        flag=false;
+
+    private void cleanList(int a) {
+        int maxSkip = a;
+        for (Iterator<File> i = from.iterator(); i.hasNext(); ) {
+            File fileFrom = i.next();
+            maxSkip = a;
+            for (Iterator<File> ii = to.iterator(); ii.hasNext(); maxSkip--) {
+                if (maxSkip == 0) {
+                    break;
+                }
+                File FileTo = ii.next();
+                if (fileFrom.getName().equals(FileTo.getName())) {
+                    if (fileFrom.length() <= FileTo.length()) {
+                        System.out.println(fileFrom.getName() + " Found");
+                        i.remove();
+                        ii.remove();
                     }
                     break;
                 }
             }
-            if(flag){
-                i++;
+        }
+    }
+
+    private void copyFileUsingStream(File source, File dest) throws IOException {
+        try (InputStream is = new FileInputStream(source);
+             OutputStream os = new FileOutputStream(dest)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
             }
         }
     }
