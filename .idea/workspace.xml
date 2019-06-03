@@ -51,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
+            <state relative-caret-position="408">
+              <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -271,12 +271,12 @@
       <workItem from="1557682503920" duration="350000" />
       <workItem from="1559410228321" duration="4331000" />
       <workItem from="1559495527935" duration="75000" />
-      <workItem from="1559568292726" duration="1640000" />
+      <workItem from="1559568292726" duration="1943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85045000" />
+    <option name="totallyTimeSpent" value="85348000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -289,9 +289,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="55" y="-7" width="1488" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49932885" visible="true" weight="0.22478992" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49932885" visible="true" weight="0.22478992" />
       <window_info id="Structure" order="1" sideWeight="0.502" side_tool="true" weight="0.17280453" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -307,7 +306,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32841823" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3297587" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3297587" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32885906" />
       <window_info anchor="bottom" id="CheckStyle" order="12" weight="0.32885906" />
@@ -444,8 +443,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/company/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="59" column="40" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
+        <state relative-caret-position="408">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

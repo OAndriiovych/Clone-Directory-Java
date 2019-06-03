@@ -1,6 +1,6 @@
-/target/
-/out/
-
+target/
+out/
+.idea/
 ### STS ###
 .apt_generated
 .classpath
