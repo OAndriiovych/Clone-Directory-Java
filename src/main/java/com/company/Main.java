@@ -14,11 +14,17 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.cloneDirectory();
+        try {
+            main.cloneDirectory();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("end");
     }
 
-    private void cloneDirectory() {
+    private void cloneDirectory() throws ExecutionException, InterruptedException {
         initFiles("From which directory?", from);
         initFiles("To which directory?", to);
         // go through the from
@@ -40,21 +46,27 @@ public class Main {
             file.delete();
         }
 
-        ExecutorService threadPool = Executors.newFixedThreadPool(8);
-        List<Future<Integer>> futures = new ArrayList<>();
+        ExecutorService threadPool = Executors.newFixedThreadPool(numOfThreads);
+        List<Future<File>> futures = new ArrayList<>();
         for (File saveFile : from) {
             futures.add(
                     CompletableFuture.supplyAsync(() -> {
                                 try {
                                     copyFileUsingStream(saveFile, new File(wayFrom + "\\" + saveFile.getName()));
+                                    return null;
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    return saveFile;
                                 }
-                                return 1;
+
                             }, threadPool
                     ));
         }
         threadPool.shutdown();
+        if(!futures.isEmpty()){
+            for (Future<File> errorFile: futures){
+                System.out.println("smth was wrong with "+errorFile.get().getName());
+            }
+        }
     }
 
     private void initFiles(String s, List<File> lst) {
@@ -69,7 +81,7 @@ public class Main {
 
 
     private void cleanList(int a) {
-        int maxSkip = a;
+        int maxSkip;
         for (Iterator<File> i = from.iterator(); i.hasNext(); ) {
             File fileFrom = i.next();
             maxSkip = a;
@@ -98,6 +110,7 @@ public class Main {
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
+            System.out.println(source.getName()+" cloned");
         }
     }
 }
