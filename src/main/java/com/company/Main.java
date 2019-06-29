@@ -16,9 +16,7 @@ public class Main {
         Main main = new Main();
         try {
             main.cloneDirectory();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("end");
@@ -43,16 +41,18 @@ public class Main {
 
         for (File file : to) {
             System.out.println(file + " DELETE");
-            file.delete();
+            file.deleteOnExit();
         }
 
         ExecutorService threadPool = Executors.newFixedThreadPool(numOfThreads);
         List<Future<File>> futures = new ArrayList<>();
+        CountDownLatch latch = new CountDownLatch(from.size());
         for (File saveFile : from) {
             futures.add(
                     CompletableFuture.supplyAsync(() -> {
                                 try {
                                     copyFileUsingStream(saveFile, new File(wayFrom + "\\" + saveFile.getName()));
+                                    latch.countDown();
                                     return null;
                                 } catch (IOException e) {
                                     return saveFile;
@@ -62,11 +62,18 @@ public class Main {
                     ));
         }
         threadPool.shutdown();
-        if(!futures.isEmpty()){
-            for (Future<File> errorFile: futures){
-                System.out.println("smth was wrong with "+errorFile.get().getName());
+
+        latch.await();
+
+
+        for (Future<File> errorFile : futures) {
+            try {
+                System.out.println("smth was wrong with " + errorFile.get().getName());
+            } catch (NullPointerException ignored){
             }
         }
+
+
     }
 
     private void initFiles(String s, List<File> lst) {
@@ -110,7 +117,7 @@ public class Main {
             while ((length = is.read(buffer)) > 0) {
                 os.write(buffer, 0, length);
             }
-            System.out.println(source.getName()+" cloned");
+            System.out.println(source.getName() + " cloned");
         }
     }
 }
